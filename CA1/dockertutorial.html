@@ -1,0 +1,72 @@
+<style>
+body {
+  background-image: url('https://static.vecteezy.com/system/resources/thumbnails/000/576/820/small/picthai-free-vector60-8-01.jpg');
+}
+</style>
+<h1>Docker Tutorial</h1>
+<h2>Prerequisites:</h2>
+<p>&bull; Google Cloud Voucher</p>
+<p>&bull; Github account setup</p>
+<h2>Creating a Docker image</h2>
+<p>To begin, you will need to create a directory using the&nbsp;<strong>mkdir</strong> command</p>
+<p>For this example, we will use</p>
+<p><strong>mkdir dockertutorial</strong></p>
+<p>Then we will create a file that tells Docker the specifications of the image you wish to create, this will be called&nbsp;<strong>dockerfile</strong> and we will be using&nbsp;<strong>nano</strong> which is a text editor.<br />The code below will bring up the text editor where the user can specify what they want in their image:</p>
+<p><strong>nano dockerfile</strong></p>
+<p>When you are on the text editor, we will use these options:</p>
+<p>FROM ubuntu:latest</p>
+<p>COPY script.sh /</p>
+<p>RUN chmod u+x /script.sh</p>
+<p>CMD ["/script.sh"]</p>
+<h3>What do the commands do?</h3>
+<p><strong>FROM</strong> specifies the [image:version]</p>
+<p><strong>COPY</strong> will allow you to add files from your current docker directory</p>
+<p><strong>RUN</strong> will build the file</p>
+<p><strong>CMD</strong> will specify what commands the container will run. In this instance, it is pulling the commands from script.sh</p>
+<h3>Creating script.sh</h3>
+<p>If you attempt to build the docker file, you will notice that you will not be able to and will encounter, because you will still need to create script.sh as we specified that there will be commands run from the script within this file.</p>
+<p>We can achieve this by using&nbsp;<strong>nano</strong> and naming it&nbsp;<strong>script.sh</strong></p>
+<p>In this instance, we will be making a CPU counting script using bash with the code below:</p>
+<p>#!/bin/bash</p>
+<p>cpucount=$(grep "rocessor" /proc/cpuinfo | wc -l)<br />echo "CPU count: $cpucount"</p>
+<h3>Building the Docker image</h3>
+<p>To build a Docker image, you will be using the <strong>docker build</strong> command.</p>
+<p>An alternative to <strong>docker build</strong> on its own is adding the <strong>-t</strong> option to give the build a name like below</p>
+<p><strong>docker build -t&nbsp;cpucounter</strong></p>
+<p>Google Cloud Shell will process this for a moment and your Docker image is created!</p>
+<p>To verify this, type in <strong>docker images</strong> to bring up a list of all available images.</p>
+<hr />
+<h1>CA Methodology</h1>
+<ol>
+<li>I created a new directory EPA-CA1<br /><br /></li>
+<li>Created the docker file through nano dockertutorial with the commands based off the spec:<br />
+<ol>
+<li>FROM python:3.9<br /><br />Selects Python 3. I wondered if I should have put "latest" instead of 3.9, but if there was a 4.X version, this would go against spec<br /><br /></li>
+<li>WORKDIR /EPA-CA1/<br /><br />Specifies the work directory<br /><br /></li>
+<li>COPY dockertutorial.html /EPA-CA1/<br /><br />Copies the html file that I have made to the container's&nbsp;work directory in step 2<br /><br /></li>
+<li>CMD python3 -m http.server 8080:8080<br /><br />Python 3 server module on port 8080<br /><br /></li>
+</ol>
+</li>
+<li>Created a rudimentary HTML file with what was requested in the spec
+<ol>
+<li>Coverage of course so far in the form of a docker tutorial<br /><br /></li>
+<li>CA Methodology<br /><br /></li>
+<li>4 links to relevant resources<br /><br /></li>
+</ol>
+</li>
+<li>Built the Dockerfile using -t dockertutorial<br /><br /></li>
+<li>Ran the Dockerfile using docker run with the following options<br />- --rm to keep the host clean from stopped and unused containers<br />- -it to start the container in interactive mode<br />- -p 8080:8080 to specify port<br /><br /></li>
+<li>Use web preview to view the directory and subsequently the HTML file<br /><br /></li>
+<li>Commit to Github</li>
+</ol>
+<hr />
+<h1>Useful Links</h1>
+<h3><a href="https://docs.docker.com/">Docker Docs</a></h3>
+<p>Useful documentation on how to use Docker and for troubleshooting error messages</p>
+<h3><a href="https://stackoverflow.com/">Stackoverflow</a></h3>
+<p>Real-life issues that other users encounter, helpful to see similar implementations and where you may have gone wrong.</p>
+<h3><a href="https://en.wikipedia.org/wiki/Docker_(software)">Docker Wikipedia Page</a></h3>
+<p>A quick summary of what Docker is all about.</p>
+<h3><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python Wikipedia Page</a></h3>
+<p>A quick summary of what Python is all about.</p>
+<p>Content edited with <a rel="nofollow noopener" href="https://htmlg.com/html-editor/" >the online HTML editor</a>. Please purchase a license code to stop adding similar ads to the edited documents.</p>
